@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+
+  <title>Frontend Mentor | Rock, Paper, Scissors</title>
+  <style>
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="game-container">
+    <div class="score-wrapper">
+      <img src="/images/logo.svg" alt="">
+      <div class="score-card">
+        <p>Score</p>
+        <span class="score-nr" id="score-number">12</span>
+      </div>
+    </div>
+
+    <div class="choose-element-container">
+      <div class="paper element" id="paper">
+        <img src="./images/icon-paper.svg" alt="">
+      </div>
+      <div class="scissors element" id="scissors">
+        <img src="/images/icon-scissors.svg" alt="" srcset="">
+      </div>
+      <div class="rock element" id="rock">
+        <img src="/images/icon-rock.svg" alt="" srcset="">
+      </div>
+      <img src="images/bg-triangle.svg" class="artisanal-triangle" alt="">
+    </div>
+    <!-- <div class="choose-element-container">
+      <div class="paper element">
+        <img src="./images/icon-paper.svg" alt="">
+      </div>
+      <div class="scissors element">
+        <img src="/images/icon-scissors.svg" alt="" srcset="">
+      </div>
+    </div> 
+     -->
+  </div>
+  <button class="btn-rules" id="btn-rules">
+    Rules
+  </button>
+  <div class="grey-overlay">
+    <div class="rules-modal" id="rules-modal">
+      <h1>Rules</h1>
+      <img src="/images/image-rules.svg" alt="" srcset="">
+      <img src="/images/icon-close.svg"  class="close" alt="">
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
