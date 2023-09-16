@@ -135,7 +135,7 @@ div.game-container {
 }
 
 .opponent .battle-text {
-    display: none;
+    visibility: hidden;
 }
 
 .btn-rules {
@@ -154,7 +154,7 @@ div.game-container {
 }
 
 .grey-overlay {
-    display: none;
+    visibility: hidden;
     background: hsl(0, 0%, 0%, 75%);
     position: absolute;
     inset: 0;
@@ -187,7 +187,7 @@ div.game-container {
 }
 
 .show {
-    display: block !important;
+    visibility: visible!important;
 }
 
 .battle-text {
@@ -199,7 +199,7 @@ div.game-container {
 }
 
 .message {
-    display: none;
+    visibility: hidden;
     position: absolute;
 }
 
@@ -271,7 +271,7 @@ div.game-container {
     }
 
     .message {
-        display: none;
+        visibility: hidden;
         position: absolute;
         transform: translate(0, 100%);
     }

@@ -76,7 +76,7 @@ window.addEventListener("click", (e) => {
       <div class="your-choice">
         <div class="${choosenElement} element">
           <p class="battle-text">You picked </p>   
-          <img src="./images/icon-${choosenElement}.svg" alt="">
+          <img src="./images/icon-${choosenElement}.svg" alt="${choosenElement}">
         </div>
       </div>
       ${winner(elements[choosenElement], randomElement)}
@@ -84,7 +84,7 @@ window.addEventListener("click", (e) => {
       <div class="opponent">
         <p class="battle-text">The house picked</p>
         <div class="${choosedElementName} element">
-          <img src="./images/icon-${choosedElementName}.svg" alt="" class= srcset="">
+          <img src="./images/icon-${choosedElementName}.svg" alt="${choosedElementName}">
         </div>
       </div>
 
@@ -103,13 +103,13 @@ window.addEventListener("click", (e) => {
         playAgain.addEventListener("click", () => {
             gamePlayground.innerHTML = `
           <div class="paper element" id="paper">
-            <img src="./images/icon-paper.svg" alt="">
+            <img src="./images/icon-paper.svg" alt="paper-icon">
           </div>
           <div class="scissors element" id="scissors">
-            <img src="./images/icon-scissors.svg" alt="" srcset="">
+            <img src="./images/icon-scissors.svg" alt="scissors-icon">
           </div>
           <div class="rock element" id="rock">
-            <img src="./images/icon-rock.svg" alt="" srcset="">
+            <img src="./images/icon-rock.svg" alt="rock-icon" >
           </div>
           <img src="images/bg-triangle.svg" class="artisanal-triangle" alt="">
         `;
