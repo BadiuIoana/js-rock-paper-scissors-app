@@ -294,11 +294,11 @@ div.game-container {
     .artisanal-triangle {
         width: 80%;
     }
-
+    /* 
     .choose-element-container .element {
         width: 48px;
         height: 48px;
-    }
+    } */
 
     .choose-element-container div.element::after {
         top: -20px;
