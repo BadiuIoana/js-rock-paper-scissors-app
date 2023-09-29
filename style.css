@@ -4,10 +4,16 @@
     font-family: "Barlow Semi Condensed", sans-serif;
 }
 
+html {
+    display: flex;
+    height: 100%;
+}
+
 body {
     background-image: linear-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
-    height: 100vh;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 div.game-container {
@@ -15,6 +21,7 @@ div.game-container {
     justify-content: center;
     align-items: center;
     margin: 2rem auto;
+    width: 100%;
 }
 
 .score-wrapper {
@@ -25,6 +32,8 @@ div.game-container {
     padding: 1rem;
     border: 0.2rem solid hsl(217, 16%, 45%);
     border-radius: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .score-wrapper .score-card {
@@ -44,10 +53,27 @@ div.game-container {
     text-transform: uppercase;
 }
 
-.score-wrapper .score-card span.score-nr {
+.score-wrapper .score-card p.score-nr {
     color: hsl(217, 16%, 45%);
     font-size: 34px;
     font-weight: 700;
+    scale: 1;
+}
+
+.zoom-in-zoom-out {
+    animation: zoom-in-zoom-out 2s ease;
+}
+
+@keyframes zoom-in-zoom-out {
+    0% {
+        transform: scale(1, 1);
+    }
+    50% {
+        transform: scale(1.3, 1.3);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
 }
 
 .choose-element-container {
@@ -58,7 +84,7 @@ div.game-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     justify-content: center;
-    margin: 7rem auto;
+    margin: 7rem auto 0 auto;
     position: relative;
     min-height: 300px;
     isolation: isolate;
@@ -114,6 +140,11 @@ div.game-container {
     background: linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%));
 }
 
+.choose-element-container.battle {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
 .choose-element-container.battle .your-choice,
 .choose-element-container.battle .opponent {
     display: flex;
@@ -148,10 +179,15 @@ div.game-container {
     visibility: hidden;
 }
 
+.btn-wrapper {
+    display: flex;
+    justify-content: right;
+    flex-grow: 1;
+    align-items: end;
+    gap: 2rem;
+}
+
 .btn-rules {
-    position: absolute;
-    right: 2rem;
-    bottom: 2rem;
     background-color: transparent;
     border: 1px solid #fff;
     border-radius: 15px;
@@ -169,16 +205,19 @@ div.game-container {
     position: absolute;
     inset: 0;
     z-index: 10000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .grey-overlay .rules-modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 100%;
+    position: relative;
+    width: 100%;
+    max-width: 370px;
     background-color: #fff;
     padding: 2rem;
+    margin: 8px;
     border-radius: 1rem;
 }
 
@@ -189,15 +228,19 @@ div.game-container {
     margin-top: 0;
 }
 
+.grey-overlay .rules-modal img:not(.close) {
+    width: 100%;
+}
+
 .grey-overlay .rules-modal img.close {
-    position: fixed;
+    position: absolute;
     top: 2.3rem;
     right: 2rem;
     cursor: pointer;
 }
 
 .show {
-    visibility: visible!important;
+    visibility: visible !important;
 }
 
 .battle-text {
@@ -209,8 +252,8 @@ div.game-container {
 }
 
 .message {
+    margin: 0 auto;
     visibility: hidden;
-    position: absolute;
 }
 
 .result-text {
@@ -243,6 +286,7 @@ div.game-container {
     div.game-container {
         max-width: 50vw;
     }
+
     .choose-element-container {
         max-width: 600px;
     }
@@ -271,22 +315,44 @@ div.game-container {
         align-items: center;
         height: 1rem;
     }
+
+    .message {
+        margin: 0 auto;
+        visibility: hidden;
+    }
+}
+
+@media (max-width: 934px) {
+    .choose-element-container.battle {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .message {
+        grid-column: span 2;
+        grid-row: 2;
+    }
 }
 
 @media (max-width: 768px) {
-    .choose-element-container.battle {
-        gap: 7rem;
-        max-width: 600px;
-    }
-
-    .message {
-        visibility: hidden;
-        position: absolute;
-        transform: translate(0, 100%);
-    }
-
     .choose-element-container {
+        grid-template-columns: repeat(2, 1fr);
         max-width: 600px;
         gap: 7rem;
+    }
+    .choose-element-container.battle {
+        max-width: 600px;
+        gap: 0;
+    }
+    .score-wrapper img {
+        height: 75px;
+    }
+    .score-wrapper .score-card p.score-nr {
+        font-size: 24px;
+    }
+    .score-wrapper .score-card {
+        padding: 0.3rem;
+    }
+    .btn-wrapper {
+        justify-content: center;
+        align-items: center;
     }
 }

@@ -1,19 +1,18 @@
 const rulesBtn = document.getElementById("btn-rules");
 const rulesModal = document.querySelector(".grey-overlay");
+const resestBtn = document.getElementById("btn-reset");
 const elements = {
     scissors: 1,
     paper: 2,
     rock: 3,
 };
 const gamePlayground = document.querySelector(".choose-element-container");
-
 let scoreNr =
-    localStorage.getItem("score") !== undefined
-        ? localStorage.getItem("score")
+    +localStorage.getItem("score") !== undefined
+        ? +localStorage.getItem("score")
         : 0;
 const scoreDOM = document.getElementById("score-number");
 scoreDOM.innerHTML = scoreNr;
-
 function winner(player1, player2) {
     if (player1 == player2) {
         return `
@@ -45,6 +44,18 @@ rulesBtn.addEventListener("click", () => {
     rulesModal.classList.toggle("show");
 });
 
+resestBtn.addEventListener("click", () => {
+    scoreNr = 0;
+    localStorage.setItem("score", 0);
+    scoreDOM.innerHTML = "0";
+    zoomScore();
+});
+const zoomScore = () => {
+    scoreDOM.classList.add("zoom-in-zoom-out");
+    setTimeout(() => {
+        scoreDOM.classList.remove("zoom-in-zoom-out");
+    }, 2000);
+};
 window.addEventListener("click", (e) => {
     if (
         e.target.classList.contains("grey-overlay") ||
@@ -66,6 +77,7 @@ window.addEventListener("click", (e) => {
     }
 
     if (choosenElement !== null && choosenElement !== 0) {
+        gamePlayground.style.backgroundImage = "none";
         let randomElement = Math.floor(Math.random() * 3) + 1;
         choosedElementName = Object.keys(elements).find(
             (key) => elements[key] === randomElement
@@ -92,15 +104,20 @@ window.addEventListener("click", (e) => {
 
         fakeTimeout(".opponent .battle-text", 500);
         fakeTimeout(".opponent .element", 1000);
-        fakeTimeout(".message", 1500);
+        fakeTimeout(".message", 2000);
 
         setTimeout(() => {
             localStorage.setItem("score", scoreNr);
             scoreDOM.innerHTML = localStorage.getItem("score");
+            zoomScore();
         }, 2000);
 
         const playAgain = document.querySelector(".btn-play-again");
         playAgain.addEventListener("click", () => {
+            gamePlayground.classList.remove("battle");
+            gamePlayground.style.backgroundImage =
+                "url(./images/bg-triangle.svg)";
+
             gamePlayground.innerHTML = `
           <div class="paper element" id="paper">
             <img src="./images/icon-paper.svg" alt="paper-icon">
@@ -111,7 +128,6 @@ window.addEventListener("click", (e) => {
           <div class="rock element" id="rock">
             <img src="./images/icon-rock.svg" alt="rock-icon" >
           </div>
-          <img src="images/bg-triangle.svg" class="artisanal-triangle" alt="">
         `;
         });
     }
